@@ -1,16 +1,17 @@
 #include <stdio.h>
 
 
-int isHeap(int array[], int length, int index)
+bool isHeap(int array[], int length, int index)
 {
-    if(index >= length)
-        return 0;
-    if(array[index] < array[2*index])
-        return 0;
-    if(array[index] < array[2*index+1])
-        return 0;
+    for(int index = 0; index < length; index++){
+        if(2*index < length && array[2*index] > array[index])
+            return 0;
+        if(2*index + 1 < length && array[2*index+1] > array[index])
+            return 0;
 
-    return isHeap(array, length, 2*index+1) && isHeap(array, length, 2*index+1);
+    }
+
+    return 1;
 }
 
 
@@ -18,7 +19,7 @@ int isHeap(int array[], int length, int index)
 int main()
 {
     int arr[] = {1, 2, 3, 4, 5, 10};
-    isHeap(&arr);
+    printf("%d")    isHeap(&arr);
 
     return 0;
 }
