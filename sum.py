@@ -71,6 +71,7 @@ if __name__ == "__main__":
     x1, y1 = zip(*data_1)
     x2, y2 = zip(*data_2)
 
+    plt.xscale('log')
     plt.plot(x1, y1)
     plt.plot(x2, y2)
     plt.show()
