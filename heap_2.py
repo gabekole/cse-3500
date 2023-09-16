@@ -22,5 +22,5 @@ def merge_lists(k_lists):
 
 if __name__ == "__main__":
     ls = [[1, 2, 3, 4], [-1, 3, 56], [12, 15, 18]]
-
-    print(merge_lists(ls));
+    print(merge_lists(ls))
+    # [-1, 1, 2, 3, 3, 4, 12, 15, 18, 56]
