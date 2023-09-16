@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 
-bool isHeap(int array[], int length, int index)
+int isHeap(int array[], int length)
 {
     for(int index = 0; index < length; index++){
         if(2*index < length && array[2*index] > array[index])
@@ -19,7 +19,8 @@ bool isHeap(int array[], int length, int index)
 int main()
 {
     int arr[] = {1, 2, 3, 4, 5, 10};
-    printf("%d")    isHeap(&arr);
-
+    printf("%d", isHeap(arr, 6));    
+    
+    
     return 0;
 }
