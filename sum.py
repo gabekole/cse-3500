@@ -45,7 +45,7 @@ def getRunTime(func):
             for target in targets:
                 func(numbers, target)
             
-            run_times[i] = time.process_time() - start
+            run_times[i] = (time.process_time() - start)/10.0
 
             i *= 10
         return run_times
