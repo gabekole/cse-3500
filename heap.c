@@ -1,17 +1,18 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 
-int isHeap(int array[], int length)
+bool isHeap(int array[], int length)
 {
     for(int index = 0; index < length; index++){
         if(2*index < length && array[2*index] > array[index])
-            return 0;
+            return false;
         if(2*index + 1 < length && array[2*index+1] > array[index])
-            return 0;
+            return false;
 
     }
 
-    return 1;
+    return true;
 }
 
 
