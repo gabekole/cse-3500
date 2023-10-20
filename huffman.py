@@ -2,22 +2,22 @@ import struct
 
 # Basically just calculates letter frequency
 def calculate_nucleotide_frequency(file_path):
-    result = {}
-    total = 0.0
+    result = {} # Dict which stores the count of each character encountered
+    total = 0.0 # total number of character encountered
 
     with open(file_path, 'r') as file:
         while True:
-            char = file.read(1)
+            char = file.read(1) # Read a single character
             if not char:
                 break
             else:
                 total += 1.0
-                if char not in result:
+                if char not in result: # Set count to 1 if not seen yet
                     result[char] = 1
-                else:
+                else: # Increment count if already seen
                     result[char] += 1
 
-    for key in result:
+    for key in result: # Divide the count by the total to get the frequency
         result[key] /= total
 
     return result
@@ -26,25 +26,26 @@ def calculate_nucleotide_frequency(file_path):
 def huffman_coding(frequencies):
     # Freqs example: {'C': 0.11, 'T': 0.29, 'G': 0.11, 'A': 0.47}
 
-    freqs = frequencies.copy()
+    freqs = frequencies.copy() # Make a copy to get rid of side-effects
 
 
-    codebook = {letter: [] for letter in freqs}
+    codebook = {letter: [] for letter in freqs} # Dictionary mapping each letter to its binary representation as a list
 
-    while(len(freqs) > 1):
+    while(len(freqs) > 1): # Continuosly combine the least frequent super symbols and symbols until there is only one left 
         in_order = sorted(freqs, key=lambda key: freqs[key])
-        min_1 = in_order.pop(0)
-        min_2 = in_order.pop(0)
+        min_1 = in_order.pop(0) # Get lowest frequency symbol (or super symbol)
+        min_2 = in_order.pop(0) # Get second lowest frequency symbol (or super symbol)
 
-        total_freq = freqs[min_1] + freqs[min_2]
+        total_freq = freqs[min_1] + freqs[min_2] # Calculate total frequency of new super symbol
 
-        del freqs[min_1]
-        del freqs[min_2]
+        del freqs[min_1] # Remove record of old symbols
+        del freqs[min_2] # Remove record of old symbols
 
-        freqs[min_1 + min_2] = total_freq
+        freqs[min_1 + min_2] = total_freq  # Add record of new symbol
 
 
-        for letter in min_1:
+        # Store the binary coding of the super symbols children
+        for letter in min_1: 
             codebook[letter].insert(0, 0) # lower freq gets 0
         
         for letter in min_2:
