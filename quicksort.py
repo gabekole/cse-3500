@@ -73,7 +73,7 @@ for n in range(100, 3000, 100):
 
     x.append(n)
     random_last_data.append(rand_last)
-    random_mid_data(rand_mid)
+    random_mid_data.append(rand_mid)
 
 plt.plot(x, random_last_data, 'r')
 plt.plot(x, random_mid_data, 'b')
