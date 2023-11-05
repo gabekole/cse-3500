@@ -1,6 +1,7 @@
 import random
 import sys
 import time
+import matplotlib.pyplot as plt
 
 def medianOfMedians(L):
     if(len(L) <= 5):
@@ -32,12 +33,13 @@ def quickSortMedian(L):
     return quickSortLast(leftHalf) + [pivot] + quickSortLast(rightHalf)
 
 
+random_last_data = []
+random_mid_data = []
+x = []
 
-if __name__ == "__main__":
+for n in range(100, 3000, 100):
     print(sys.setrecursionlimit(10000))
 
-
-    n=1500
     rand_list=[]
     for i in range(n):
         rand_list.append(random.randint(3,9))
@@ -68,3 +70,11 @@ if __name__ == "__main__":
     print(f'Sorted-Last: {sorted_last*1000}')
     print(f'Random-mid: {rand_mid*1000}')
     print(f'Random-last: {rand_last*1000}')
+
+    x.append(n)
+    random_last_data.append(rand_last)
+    random_mid_data(rand_mid)
+
+plt.plot(x, random_last_data, 'r')
+plt.plot(x, random_mid_data, 'b')
+plt.show()
